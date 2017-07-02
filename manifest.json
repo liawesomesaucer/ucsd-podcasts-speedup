@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+
+  "name": "UCSD Podcast Speedup",
+  "description": "This extension allows you to change the podcast speed to what you normally want",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "http://podcast.ucsd.edu/"
+  ],
+  "background": {
+    "scripts": [
+      "popup.js"
+    ]
+    // "persistent": true
+  },
+  "content_scripts": [{
+      "matches": ["http://podcast.ucsd.edu/podcasts/*"],
+      "js": ["jquery-1.7.1.min.js", "updatePodcastSpeed.js"]
+  }],
+  "web_accessible_resources": ["jquery-1.7.1.min.js", "updatePodcastSpeed.js"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
